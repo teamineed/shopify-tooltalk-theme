@@ -1,1 +1,12 @@
-{}
+{
+  "current": {
+    "colors_solid_button_labels": "#fffff0",
+    "sale_badge_color_scheme": "accent-1",
+    "social_twitter_link": "test",
+    "social_facebook_link": "test",
+    "social_pinterest_link": "test",
+    "content_for_index": [
+
+    ]
+  }
+}

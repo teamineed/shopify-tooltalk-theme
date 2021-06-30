@@ -1,0 +1,140 @@
+<style>
+  .rps-results-page-title {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  .rps-search-results-search-bar-wrapper {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .rps-search-results-search-bar-container {
+    background: white;
+    width: 100%;
+    display: flex;
+    margin: 0 auto 25px;
+    max-width: 500px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .rps-search-results-search-bar-input-container {
+    flex: 1;
+    display: flex;
+    position: relative;
+  }
+
+  .rps-search-results-search-bar-input {
+    background: transparent;
+    display: block;
+    outline: none;
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+    color: black;
+    margin: 0;
+  }
+
+  .rps-reset-button {
+    border: none;
+    outline: none;
+    margin: 0;
+  }
+
+  .rps-search-results-search-bar-button {
+    background: #bdbdbd;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    padding: 6px;
+  }
+
+  .rps-search-results-search-bar-button svg {
+    fill: white;
+  }
+
+  .rps-search-results-search-bar-input-clear-button {
+    background: none;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: max-content;
+  }
+
+  @media all and (max-width: 576px) {
+    .rps-results-page-title {
+      font-size: 23px;
+    }
+  }
+
+  input.rps-search-results-search-bar-input:placeholder-shown + button {
+    display: none !important;
+  }
+</style>
+
+<h1 class="rps-results-page-title">{{page.title}}</h1>
+
+<div class="rps-search-results-search-bar-wrapper">
+  <form class="rps-search-results-search-bar-container" role="search">
+    <div class="rps-search-results-search-bar-input-container">
+      <input placeholder=" " class="rps-search-results-search-bar-input" />
+      <button type="button" class="rps-reset-button rps-search-results-search-bar-input-clear-button">
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        >
+          <path
+            d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"
+          />
+        </svg>
+      </button>
+    </div>
+    <button type="submit" class="rps-reset-button rps-search-results-search-bar-button">
+      <svg height="17" viewBox="0 0 24 24">
+        <path
+          d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73
+          4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792
+           3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"
+        />
+      </svg>
+    </button>
+  </form>
+</div>
+
+<script type="text/javascript">
+  const searchInputElement = document.querySelector('.rps-search-results-search-bar-input');
+  const clearButtonElement = document.querySelector('.rps-search-results-search-bar-input-clear-button');
+
+  if (typeof URLSearchParams === 'function') {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentQuery = urlParams.get('q');
+
+    searchInputElement.value = currentQuery;
+
+    if (currentQuery) {
+      document.querySelector('.rps-search-results-search-bar-input-clear-button').style.display = 'flex';
+    }
+  }
+
+  const customSearchbars = document.querySelectorAll('.rps-bar-container');
+
+  if (customSearchbars.length) {
+    customSearchbars.forEach(element => {
+      element.setAttribute('style', 'display: none !important');
+    })
+  }
+
+</script>
+
+{{page.content}}
